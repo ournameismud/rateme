@@ -72,18 +72,20 @@ class Install extends Migration
     {
         $tablesCreated = false;
 
-        $tableSchema = Craft::$app->db->schema->getTableSchema('{{%rateme_ratemerecord}}');
+        $tableSchema = Craft::$app->db->schema->getTableSchema('{{%rateme_rating}}');
         if ($tableSchema === null) {
             $tablesCreated = true;
             $this->createTable(
-                '{{%rateme_ratemerecord}}',
+                '{{%rateme_rating}}',
                 [
                     'id' => $this->primaryKey(),
                     'dateCreated' => $this->dateTime()->notNull(),
                     'dateUpdated' => $this->dateTime()->notNull(),
                     'uid' => $this->uid(),
                     'siteId' => $this->integer()->notNull(),
-                    'some_field' => $this->string(255)->notNull()->defaultValue(''),
+                    'element' => $this->integer()->notNull(),
+                    'rate' => $this->integer()->notNull(),
+                    'owner' => $this->string(255)->notNull()->defaultValue(''),
                 ]
             );
         }
@@ -98,11 +100,11 @@ class Install extends Migration
     {
         $this->createIndex(
             $this->db->getIndexName(
-                '{{%rateme_ratemerecord}}',
+                '{{%rateme_rating}}',
                 'some_field',
                 true
             ),
-            '{{%rateme_ratemerecord}}',
+            '{{%rateme_rating}}',
             'some_field',
             true
         );
@@ -121,8 +123,8 @@ class Install extends Migration
     protected function addForeignKeys()
     {
         $this->addForeignKey(
-            $this->db->getForeignKeyName('{{%rateme_ratemerecord}}', 'siteId'),
-            '{{%rateme_ratemerecord}}',
+            $this->db->getForeignKeyName('{{%rateme_rating}}', 'siteId'),
+            '{{%rateme_rating}}',
             'siteId',
             '{{%sites}}',
             'id',
@@ -143,6 +145,6 @@ class Install extends Migration
      */
     protected function removeTables()
     {
-        $this->dropTableIfExists('{{%rateme_ratemerecord}}');
+        $this->dropTableIfExists('{{%rateme_rating}}');
     }
 }

@@ -30,6 +30,6 @@ class RateMeRecord extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%rateme_ratemerecord}}';
+        return '{{%rateme_rating}}';
     }
 }
