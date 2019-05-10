@@ -1,0 +1,43 @@
+{
+    "name": "ournameismud/rate-me",
+    "description": "Simple Rating plugin",
+    "type": "craft-plugin",
+    "version": "1",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "rate me"
+    ],
+    "support": {
+        "docs": "https://github.com/ournameismud/rate-me/blob/master/README.md",
+        "issues": "https://github.com/ournameismud/rate-me/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "@cole007",
+            "homepage": "http://ournameismud.co.uk/"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0-RC1"
+    },
+    "autoload": {
+        "psr-4": {
+          "ournameismud\\rateme\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Rate Me",
+        "handle": "rate-me",
+        "hasCpSettings": false,
+        "hasCpSection": true,
+        "changelogUrl": "https://raw.githubusercontent.com/ournameismud/rate-me/master/CHANGELOG.md",
+        "components": {
+            "rateMeService": "ournameismud\\rateme\\services\\RateMeService"
+        },
+        "class": "ournameismud\\rateme\\RateMe"
+    }
+}
