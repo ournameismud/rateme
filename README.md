@@ -28,11 +28,38 @@ To install the plugin, follow these instructions.
 
 ## Configuring Rate Me
 
--Insert text here-
+-email confirmation
+-logged in 
+
 
 ## Using Rate Me
 
--Insert text here-
+### Sample form
+
+	<form method="POST">
+		<input type="hidden" name="action" value="rate-me/default/rate" />
+		<input type="hidden" name="element" value="{{ elementId }}" />
+		{{ csrfInput() }}
+		{% set rating = craft.rateMe.getRating( elementId ) %}
+		<fieldset>
+			<legend>Rate Me</legend>
+			<label for="rating">Rating</label>
+			<select name="rating" id="rating">
+				{% for i in 1..5 %}
+				<option {{ rating == i ? 'selected' }} value="{{ i }}">{{ i }}</option>
+				{% endfor %}
+			</select>	
+			<button" type="submit">{{'Submit'|t}}</button>
+		</fieldset>
+	</form>
+
+### Variable
+
+Pass element id into the following: `{{ craft.rateMe.getRating( elementId ) }}` to get the rating for that user (if not logged in then will generate an anonymous session ID)
+
+To get average ratings for a particular element then use the following: `{% set average = craft.rateMe.getAverage( elementId ) %}`. This will return an object with count and average rating, eg `{{ average.rating }}` and `{{ average.count }}`. You can use the `|number_format` twig filter to round the rating.
+
+
 
 ## Rate Me Roadmap
 

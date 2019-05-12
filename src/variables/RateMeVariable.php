@@ -28,12 +28,17 @@ class RateMeVariable
      * @param null $optional
      * @return string
      */
-    public function exampleVariable($optional = null)
+    public function getRating( $elementId )
     {
-        $result = "And away we go to the Twig template...";
-        if ($optional) {
-            $result = "I'm feeling optional today...";
-        }
-        return $result;
+        
+        $record = RateMe::getInstance()->rateMeService->getRating( $elementId );
+        return $record;
+    }
+
+    public function getAverage( $elementId )
+    {
+        
+        $count = RateMe::getInstance()->rateMeService->getAverage( $elementId );
+        return $count;
     }
 }

@@ -22,6 +22,8 @@ use craft\web\twig\variables\CraftVariable;
 use craft\events\RegisterUrlRulesEvent;
 
 use yii\base\Event;
+use yii\web\User;
+use yii\web\UserEvent;
 
 /**
  * Class RateMe
@@ -44,6 +46,8 @@ class RateMe extends Plugin
 
     // Public Properties
     // =========================================================================
+
+    protected $sessionName = 'ournameismud_rateme';
 
     /**
      * @var string
@@ -84,6 +88,18 @@ class RateMe extends Plugin
                 /** @var CraftVariable $variable */
                 $variable = $event->sender;
                 $variable->set('rateMe', RateMeVariable::class);
+            }
+        );
+
+
+        Event::on(
+            User::class,
+            User::EVENT_AFTER_LOGIN,
+            function (UserEvent $userEvent) {
+                
+                $session = Craft::$app->getSession();
+                $sessionName = $session[$this->sessionName];
+                $this->rateMeService->convertRatings($sessionName);
             }
         );
 

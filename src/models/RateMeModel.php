@@ -39,8 +39,9 @@ class RateMeModel extends Model
     public function rules()
     {
         return [
-            ['someAttribute', 'string'],
-            ['someAttribute', 'default', 'value' => 'Some Default'],
+            ['element', 'number','min' => 1],
+            ['rate', 'number','min' => 1],
+            ['owner', 'string'],
         ];
     }
 }

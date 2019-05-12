@@ -31,7 +31,7 @@ class DefaultController extends Controller
      *         The actions must be in 'kebab-case'
      * @access protected
      */
-    protected $allowAnonymous = ['index', 'do-something'];
+    protected $allowAnonymous = ['index', 'rate'];
 
     // Public Methods
     // =========================================================================
@@ -49,10 +49,19 @@ class DefaultController extends Controller
     /**
      * @return mixed
      */
-    public function actionDoSomething()
+    public function actionRate()
     {
-        $result = 'Welcome to the DefaultController actionDoSomething() method';
-
-        return $result;
+        $this->requirePostRequest();
+        $request = Craft::$app->getRequest();
+        $rating = $request->getBodyParam('rating');
+        $element = $request->getBodyParam('element');
+        $record = RateMe::getInstance()->rateMeService->addRating($rating,$element);
+        
+        if ($request->getAcceptsJson()) {
+            return $this->asJson(['response' => 'Rating added', 'rating' => $record]);
+        } else {
+            Craft::$app->getSession()->setNotice('Rating added');
+            return $this->redirectToPostedUrl();
+        }   
     }
 }
