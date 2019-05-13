@@ -32,7 +32,7 @@
     "extra": {
         "name": "Rate Me",
         "handle": "rate-me",
-        "hasCpSettings": false,
+        "hasCpSettings": true,
         "hasCpSection": true,
         "changelogUrl": "https://raw.githubusercontent.com/ournameismud/rate-me/master/CHANGELOG.md",
         "components": {

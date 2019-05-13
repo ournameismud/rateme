@@ -54,13 +54,27 @@ class DefaultController extends Controller
         $this->requirePostRequest();
         $request = Craft::$app->getRequest();
         $rating = $request->getBodyParam('rating');
-        $element = $request->getBodyParam('element');
-        $record = RateMe::getInstance()->rateMeService->addRating($rating,$element);
-        
+        $elementId = $request->getBodyParam('elementId');
+
+        $settings = RateMe::$plugin->getSettings();
+        $loggedIn = $settings->loggedIn;
+        $user = Craft::$app->getUser();  
+        if($loggedIn && $user->id == null) { 
+            $message = 'Login required to post rating';
+            if ($request->getAcceptsJson()) {
+                return $this->asJson(['response' => $message]);
+            } else {
+                Craft::$app->getSession()->setNotice( $message );
+                return $this->redirectToPostedUrl();
+            }   
+        }
+
+        $record = RateMe::getInstance()->rateMeService->addRating($rating,$elementId);
+        $message = 'Rating added';
         if ($request->getAcceptsJson()) {
-            return $this->asJson(['response' => 'Rating added', 'rating' => $record]);
+            return $this->asJson(['response' => $message, 'rating' => $record]);
         } else {
-            Craft::$app->getSession()->setNotice('Rating added');
+            Craft::$app->getSession()->setNotice($message);
             return $this->redirectToPostedUrl();
         }   
     }
