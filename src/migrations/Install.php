@@ -98,16 +98,16 @@ class Install extends Migration
      */
     protected function createIndexes()
     {
-        $this->createIndex(
-            $this->db->getIndexName(
-                '{{%rateme_rating}}',
-                'some_field',
-                true
-            ),
-            '{{%rateme_rating}}',
-            'some_field',
-            true
-        );
+        // $this->createIndex(
+        //     $this->db->getIndexName(
+        //         '{{%rateme_rating}}',
+        //         'some_field',
+        //         true
+        //     ),
+        //     '{{%rateme_rating}}',
+        //     'some_field',
+        //     true
+        // );
         // Additional commands depending on the db driver
         switch ($this->driver) {
             case DbConfig::DRIVER_MYSQL:
