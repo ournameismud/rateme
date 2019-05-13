@@ -12,6 +12,7 @@ namespace ournameismud\rateme;
 
 use ournameismud\rateme\services\RateMeService as RateMeServiceService;
 use ournameismud\rateme\variables\RateMeVariable;
+use ournameismud\rateme\models\Settings;
 
 use Craft;
 use craft\base\Plugin;
@@ -125,4 +126,25 @@ class RateMe extends Plugin
     // Protected Methods
     // =========================================================================
 
+    public $hasCpSettings = true;
+    /**
+     * @inheritdoc
+     */
+    protected function createSettingsModel()
+    {
+        return new Settings();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function settingsHtml(): string
+    {
+        return Craft::$app->view->renderTemplate(
+            'rate-me/settings',
+            [
+                'settings' => $this->getSettings()
+            ]
+        );
+    }
 }

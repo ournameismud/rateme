@@ -1,0 +1,34 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Rate Me plugin for Craft CMS 3.x
+ *
+ * Rate Me Settings.twig
+ *
+ * @author    @cole007
+ * @copyright Copyright (c) 2019 @cole007
+ * @link      http://ournameismud.co.uk/
+ * @package   RateMe
+ * @since     1
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("ournameismud\\rateme\\assetbundles\\rateme\\RateMeAsset") %}
+
+{{ forms.lightswitchField({
+    label: 'Require login',
+    instructions: 'Ensure form can only be submitted by logged in users',
+    id: 'loggedIn',
+    name: 'loggedIn',
+    on: settings['loggedIn']})
+}}
+
+{{ forms.textField({
+    label: 'Email confirmation',
+    instructions: 'Comma-separated list of email recipients that ratings should be forwarded to',
+    id: 'recipients',
+    name: 'recipients',
+    value: settings['recipients']})
+}}
