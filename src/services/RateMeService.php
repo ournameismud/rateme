@@ -56,6 +56,19 @@ class RateMeService extends Component
         ];
     }
 
+
+    public function getRatings( )
+    {
+        $site = Craft::$app->getSites()->getCurrentSite();
+        
+        $ratings = RatingRecord::find()
+            ->where([
+                'siteId' => $site->id
+            ])->all();    
+
+        return $ratings ? $ratings : null; 
+    }
+
     public function getRating( $elementId )
     {
         $site = Craft::$app->getSites()->getCurrentSite();

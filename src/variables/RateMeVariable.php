@@ -28,6 +28,12 @@ class RateMeVariable
      * @param null $optional
      * @return string
      */
+    public function getRatings()
+    {
+        $record = RateMe::getInstance()->rateMeService->getRatings();
+        return $record;
+    }
+    
     public function getRating( $elementId )
     {
         

@@ -24,17 +24,26 @@ To install the plugin, follow these instructions.
 
 ## Rate Me Overview
 
--Insert text here-
+Simple plugin to capture ratings for elements.
 
 ## Configuring Rate Me
 
--email confirmation
--logged in 
+The following settings are available for the plugin:
 
+### Logged-in users only 
+
+Check this option to limit posting to logged-in users only (otherwise ratings can be submitted anonymously).
+
+### Email recipients
+
+You can specify recipients to be notified when a rating is posted.
+Simply add a comma-separated list of email recipients.
 
 ## Using Rate Me
 
 ### Sample form
+
+Example form with 1 to 5 rating dropdown:
 
 	<form method="POST">
 		<input type="hidden" name="action" value="rate-me/default/rate" />
@@ -53,12 +62,17 @@ To install the plugin, follow these instructions.
 		</fieldset>
 	</form>
 
-### Variable
+### Variables
+
+#### getRating
 
 Pass element id into the following: `{{ craft.rateMe.getRating( elementId ) }}` to get the rating for that user (if not logged in then will generate an anonymous session ID)
 
-To get average ratings for a particular element then use the following: `{% set average = craft.rateMe.getAverage( elementId ) %}`. This will return an object with count and average rating, eg `{{ average.rating }}` and `{{ average.count }}`. You can use the `|number_format` twig filter to round the rating.
+#### getAverage
 
+To get average ratings for a particular element then use the following: `{% set average = craft.rateMe.getAverage( elementId ) %}`. This will return an object with count and average rating, eg `{{ average.rating }}` and `{{ average.count }}`. If no ratings exist for that element then the variable will return `null`. 
+
+You can use the `|number_format` twig filter to round the rating number.
 
 
 ## Rate Me Roadmap

@@ -21,7 +21,7 @@
 
 {% set docsUrl = "https://github.com/ournameismud/rate-me/blob/master/README.md" %}
 
-{% set title = "Rate Me" %}
+{% set title = "Rate Me ratings" %}
 
 {% set pluginCpUrl = url('rate-me') %}
 
@@ -34,7 +34,21 @@
 {% endset %}
 
 {% set content %}
-    <h2>{{ "Index CP Section body goes here"|t('rate-me') }}</h2>
-    <img src="{{ iconUrl }}" height="64" width="64" />
-    <p class="textline"></p>
+	{% set ratings = craft.rateMe.getRatings %}
+	{% if ratings %}
+	<table>
+		<tr>
+			<th>Element</th>
+			<th>Rating</th>
+			<th>Owner</th>
+		</tr>
+	{% for rating in ratings %} 
+		<tr>
+			<td>{{ rating.element }}</td>
+			<td>{{ rating.rate }}</td>
+			<td>{{ rating.owner }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+	{% endif %}
 {% endset %}
