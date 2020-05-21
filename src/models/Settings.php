@@ -29,6 +29,7 @@ class Settings extends Model
      * @var string
      */
     public $loggedIn = '1';
+    public $snaptcha = '1';
     public $recipients = '';
 
     // Public Methods
@@ -41,6 +42,7 @@ class Settings extends Model
     {
         return [
             ['loggedIn', 'boolean'],
+            ['snaptcha', 'boolean'],
             ['recipients', 'string']
         ];
     }

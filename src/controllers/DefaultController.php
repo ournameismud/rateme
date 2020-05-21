@@ -23,6 +23,11 @@ use craft\web\Controller;
 class DefaultController extends Controller
 {
 
+    
+    public $settings = RateMe::$plugin->getSettings();
+
+    public $enableSnaptchaValidation = $settings->snaptcha == 1 ? true : false;
+
     // Protected Properties
     // =========================================================================
 
@@ -56,8 +61,8 @@ class DefaultController extends Controller
         $rating = $request->getBodyParam('rating');
         $elementId = $request->getBodyParam('elementId');
 
-        $settings = RateMe::$plugin->getSettings();
-        $loggedIn = $settings->loggedIn;
+        // $settings = RateMe::$plugin->getSettings();
+        $loggedIn = $this->settings->loggedIn;
         $user = Craft::$app->getUser();  
         if($loggedIn && $user->id == null) { 
             $message = 'Login required to post rating';

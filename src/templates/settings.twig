@@ -25,6 +25,13 @@
     on: settings['loggedIn']})
 }}
 
+{{ forms.lightswitchField({
+    label: 'Validate submissions with Snaptcha?',
+    id: 'snaptcha',
+    name: 'snaptcha',
+    on: settings['snaptcha']})
+}}
+
 {{ forms.textField({
     label: 'Email confirmation',
     instructions: 'Comma-separated list of email recipients that ratings should be forwarded to',
