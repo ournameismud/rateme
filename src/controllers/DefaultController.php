@@ -24,9 +24,9 @@ class DefaultController extends Controller
 {
 
     
-    public $settings = RateMe::$plugin->getSettings();
-
-    public $enableSnaptchaValidation = $settings->snaptcha == 1 ? true : false;
+    // public $settings = RateMe::$plugin->getSettings();
+    // public $enableSnaptchaValidation = $settings->snaptcha == 1 ? true : false;
+    public $enableSnaptchaValidation = false;
 
     // Protected Properties
     // =========================================================================
