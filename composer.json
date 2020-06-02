@@ -2,7 +2,7 @@
     "name": "ournameismud/rate-me",
     "description": "Simple Rating plugin",
     "type": "craft-plugin",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "keywords": [
         "craft",
         "cms",

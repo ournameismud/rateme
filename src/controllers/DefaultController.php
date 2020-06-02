@@ -61,8 +61,8 @@ class DefaultController extends Controller
         $rating = $request->getBodyParam('rating');
         $elementId = $request->getBodyParam('elementId');
 
-        // $settings = RateMe::$plugin->getSettings();
-        $loggedIn = $this->settings->loggedIn;
+        $settings = RateMe::$plugin->getSettings();
+        $loggedIn = $settings->loggedIn;
         $user = Craft::$app->getUser();  
         if($loggedIn && $user->id == null) { 
             $message = 'Login required to post rating';
